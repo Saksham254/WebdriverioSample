@@ -1,0 +1,26 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+ 
+pool:
+  vmImage: 'Ubuntu-16.04'
+ 
+variables:
+  LT_USERNAME: 'sakshama'
+  LT_ACCESS_KEY: 'VqdIx2lZqHbH3sUI5qi3PY3E1dHuoU8uI94nr2C2aD6aTi9Taw'
+ 
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+ 
+- script: |
+    npm install
+    npm install -g webdriverio
+    npm run single
+  displayName: 'npm install and build'
